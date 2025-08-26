@@ -66,14 +66,12 @@ end
 ---@overload fun(tbl:table):Command
 ---@return Command
 function Command:parse(tbl, builtin) -- luacheck: no unused
-  vim.validate({
-    ['1'] = { tbl[1], { 'string' } },
-    ['2'] = { tbl[2], { 'string', 'function', 'table' }, true },
-    opts = { tbl.opts, { 'table' }, true },
-    description = { util.get_desc(tbl), { 'string' }, true },
-    unfinished = { tbl.unfinished, { 'boolean' }, true },
-    hide = { tbl.hide, { 'boolean' }, true },
-  })
+  vim.validate('1', tbl[1], 'string')
+  vim.validate('2', tbl[2], { 'string', 'function', 'table' }, true)
+  vim.validate('opts', tbl.opts, 'table', true)
+  vim.validate('description', util.get_desc(tbl), 'string', true)
+  vim.validate('unfinished', tbl.unfinished, 'boolean', true)
+  vim.validate('hide', tbl.hide, 'boolean', true)
 
   local instance = Command()
 

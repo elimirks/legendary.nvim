@@ -1,3 +1,5 @@
+**FORK** to fix warnings and/or issues with neovim 0.11+
+
 > [!NOTE]
 > `legendary.nvim` is [looking for a new maintainer](https://github.com/mrjones2014/legendary.nvim/issues/505)!
 

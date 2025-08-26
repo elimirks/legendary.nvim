@@ -37,15 +37,13 @@ Keymap:include(Filters) ---@diagnostic disable-line
 ---@overload fun(tbl:table):Keymap
 ---@return Keymap
 function Keymap:parse(tbl, builtin) -- luacheck: no unused
-  vim.validate({
-    ['1'] = { tbl[1], { 'string' } },
-    ['2'] = { tbl[2], { 'string', 'function', 'table' }, true },
-    mode = { tbl.mode, { 'string', 'table' }, true },
-    opts = { tbl.opts, { 'table' }, true },
-    hide = { tbl.hide, { 'boolean' }, true },
-    description = { util.get_desc(tbl), { 'string' }, true },
-    filters = { tbl.filters, { 'table' }, true },
-  })
+  vim.validate('1', tbl[1], 'string')
+  vim.validate('2', tbl[2], { 'string', 'function', 'table' }, true)
+  vim.validate('mode', tbl.mode, { 'string', 'table' }, true)
+  vim.validate('opts', tbl.opts, 'table', true)
+  vim.validate('hide', tbl.hide, 'boolean', true)
+  vim.validate('description', util.get_desc(tbl), 'string', true)
+  vim.validate('filters', tbl.filters, 'table', true)
 
   if type(tbl[2]) == 'table' then
     vim.validate({

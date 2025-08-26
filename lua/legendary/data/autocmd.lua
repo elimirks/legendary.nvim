@@ -18,14 +18,12 @@ Autocmd:include(Filters) ---@diagnostic disable-line
 ---@param tbl table
 ---@return Autocmd
 function Autocmd:parse(tbl) -- luacheck: no unused
-  vim.validate({
-    ['1'] = { tbl[1], { 'string', 'table' } },
-    ['2'] = { tbl[2], { 'string', 'function' } },
-    description = { util.get_desc(tbl), { 'string' }, true },
-    opts = { tbl.opts, { 'table' }, true },
-    group = { tbl.group, { 'string', 'number' }, true },
-    hide = { tbl.hide, { 'boolean' }, true },
-  })
+  vim.validate('1', tbl[1], { 'string', 'table' })
+  vim.validate('2', tbl[2], { 'string', 'function' })
+  vim.validate('description', util.get_desc(tbl), 'string', true)
+  vim.validate('opts', tbl.opts, 'table', true)
+  vim.validate('group', tbl.group, { 'string', 'number' }, true)
+  vim.validate('hide', tbl.hide, 'boolean', true)
 
   local instance = Autocmd()
 
